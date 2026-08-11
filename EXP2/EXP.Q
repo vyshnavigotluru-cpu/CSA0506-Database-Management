@@ -1,0 +1,25 @@
+CREATE DATABASE CollegeDB;
+USE CollegeDB;
+CREATE TABLE Department(
+DeptID INT PRIMARY KEY,
+DeptName VARCHAR(30) UNIQUE
+);
+CREATE TABLE Student(
+RollNo INT PRIMARY KEY,
+Name VARCHAR(30) NOT NULL,
+Age INT CHECK(Age>=18),
+City VARCHAR(20) DEFAULT 'Chennai',
+DeptID INT,
+FOREIGN KEY(DeptID) REFERENCES Department(DeptID)
+);
+INSERT INTO Department VALUES
+(101,'CSE'),
+(102,'ECE'),
+(103,'IT');
+
+INSERT INTO Student(RollNo,Name,Age,DeptID) VALUES
+(1,'Rahul',20,101),
+(2,'Anitha',19,102),
+(3,'Kiran',21,103);
+SELECT * FROM Department;
+SELECT * FROM Student;
