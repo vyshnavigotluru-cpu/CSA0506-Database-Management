@@ -1,0 +1,32 @@
+DROP DATABASE IF EXISTS ProgramDB;
+CREATE DATABASE ProgramDB;
+USE ProgramDB;
+DELIMITER $$
+CREATE PROCEDURE CaseDemo(IN marks INT)
+BEGIN
+CASE
+WHEN marks>=90 THEN
+SELECT 'Grade A' AS Result;
+WHEN marks>=75 THEN
+SELECT 'Grade B' AS Result;
+WHEN marks>=50 THEN
+SELECT 'Grade C' AS Result;
+ELSE
+SELECT 'Fail' AS Result;
+END CASE;
+END $$
+CREATE PROCEDURE LoopDemo()
+BEGIN
+DECLARE i INT DEFAULT 1;
+myloop: LOOP
+SELECT i;
+SET i=i+1;
+IF i>5 THEN
+LEAVE myloop;
+END IF;
+END LOOP;
+END $$
+DELIMITER ;
+CALL CaseDemo(85);
+
+CALL LoopDemo();
