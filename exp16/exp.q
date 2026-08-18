@@ -1,0 +1,22 @@
+DROP DATABASE IF EXISTS EmployeeDB;
+CREATE DATABASE EmployeeDB;
+USE EmployeeDB;
+CREATE TABLE Employee(
+EmpID INT PRIMARY KEY,
+EmpName VARCHAR(30),
+Department VARCHAR(20),
+Salary INT
+);
+INSERT INTO Employee VALUES
+(101,'Rahul','CSE',30000),
+(102,'Anitha','ECE',35000),
+(103,'Kiran','IT',40000),
+(104,'Sneha','CSE',38000);
+DELIMITER $$
+CREATE PROCEDURE ShowEmployee()
+BEGIN
+SELECT * FROM Employee;
+END $$
+
+DELIMITER ;
+CALL ShowEmployee();
