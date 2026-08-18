@@ -1,0 +1,33 @@
+DROP DATABASE IF EXISTS CursorDB;
+CREATE DATABASE CursorDB;
+USE CursorDB;
+CREATE TABLE Student(
+RollNo INT PRIMARY KEY,
+Name VARCHAR(30),
+Marks INT
+);
+INSERT INTO Student VALUES
+(101,'Rahul',85),
+(102,'Anitha',90),
+(103,'Kiran',78);
+DELIMITER $$
+CREATE PROCEDURE CursorDemo()
+BEGIN
+DECLARE done INT DEFAULT 0;
+DECLARE sname VARCHAR(30);
+DECLARE cur CURSOR FOR
+SELECT Name FROM Student;
+DECLARE CONTINUE HANDLER FOR NOT FOUND
+SET done=1;
+OPEN cur;
+read_loop: LOOP
+FETCH cur INTO sname;
+IF done=1 THEN
+LEAVE read_loop;
+END IF;
+SELECT sname AS Student_Name;
+END LOOP;
+CLOSE cur;
+END $$
+DELIMITER ;
+CALL CursorDemo(); 
