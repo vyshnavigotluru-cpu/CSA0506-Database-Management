@@ -1,0 +1,13 @@
+DROP DATABASE IF EXISTS StudentDB;
+CREATE DATABASE StudentDB;
+USE StudentDB;
+CREATE TABLE Student(
+RollNo INT PRIMARY KEY,
+Name VARCHAR(30),
+Department VARCHAR(20)
+);
+INSERT INTO Student VALUES
+(101,'Rahul','CSE'),
+(102,'Anitha','ECE'),
+(103,'Kiran','IT');
+SELECT * FROM Student;
